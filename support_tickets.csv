@@ -1,0 +1,245 @@
+ticket_text,category
+I was charged twice for my subscription this month,billing
+"Please refund my last payment, it was billed in error",billing
+My invoice amount looks incorrect compared to my plan,billing
+Why was I charged before my free trial ended,billing
+I want to cancel my subscription and get a refund for this month,billing
+The promo code I used wasn't applied at checkout,billing
+My card was declined but I was still billed,billing
+Can you explain the extra charge on my statement,billing
+I upgraded my plan but I'm still being charged the old price,billing
+I need a copy of my receipt for last month,billing
+There's a currency conversion fee I wasn't expecting,billing
+I cancelled months ago but just got charged again,billing
+Requesting a chargeback because the service wasn't delivered,billing
+"My annual plan renewed without notice, can I get a partial refund",billing
+The tax amount on my invoice seems too high,billing
+I was billed for a plan I never signed up for,billing
+Downgrading my plan but the price didn't change on my bill,billing
+Payment failed notification but money still left my account,billing
+Why do I see two separate charges for one subscription,billing
+I need my billing address updated before the next invoice,billing
+Trial ended and I got charged the full annual price instead of monthly,billing
+"Refund request, accidentally purchased the wrong plan",billing
+"My coupon expired the day before I used it, can it still apply",billing
+Getting billed in USD instead of my local currency,billing
+Double billing after updating my card details,billing
+I paid but my account still shows as unpaid,billing
+Requesting an itemized breakdown of this month's invoice,billing
+My subscription renewed a week early and I was charged twice,billing
+Can I get a discount applied retroactively to last month's bill,billing
+The free trial converted to paid without any warning email,billing
+I was charged for team seats I removed last week,billing
+Invoice shows a late fee even though I paid on time,billing
+Need to switch my payment method before the next billing cycle,billing
+Got charged after cancelling within the refund window,billing
+Why is there a service fee I don't recognize on my bill,billing
+My company needs a formal invoice with our tax ID included,billing
+Overcharged for add-ons I already removed from my plan,billing
+Payment went through twice due to a page refresh error,billing
+Requesting proration credit after downgrading mid-cycle,billing
+My subscription shows past due but autopay is enabled,billing
+I was billed annually but I selected the monthly plan,billing
+Refund never showed up on my card after two weeks,billing
+Why does my receipt show a different amount than what I was charged,billing
+"I upgraded then immediately downgraded, did I get charged for both",billing
+Sales tax on my invoice doesn't match my state's rate,billing
+My free trial credit card was charged before the trial ended,billing
+I was invoiced in the wrong billing cycle,billing
+Duplicate charge showed up after I updated my card on file,billing
+Can I get a refund for the unused portion of my annual plan,billing
+My subscription auto-renewed at a higher price than last year,billing
+The discount code worked at checkout but I was still charged full price,billing
+I need an invoice reissued with the correct company name,billing
+Charged for a plan upgrade I never confirmed,billing
+My payment is stuck in pending for over a week,billing
+Why did my card get charged in a foreign currency,billing
+I was charged a setup fee that wasn't mentioned anywhere,billing
+Need clarification on a prorated charge from last week,billing
+My refund was approved but I haven't received the money,billing
+Billing cycle changed without any notice to me,billing
+I was charged for extra storage I never used,billing
+I can't log into my account,account_access
+Locked out after entering the wrong password three times,account_access
+"MFA code never arrives on my phone, can't get past login",account_access
+My account shows someone else's name after I sign in,account_access
+Password reset link takes me to an error page,account_access
+Getting session expired every time I try to open my dashboard,account_access
+Forgot my username and the recovery email isn't showing up,account_access
+Someone else logged into my account without permission,account_access
+My account got locked and I don't know why,account_access
+Two-factor authentication app isn't generating matching codes,account_access
+I keep getting logged out every few minutes,account_access
+Email verification link says it already expired,account_access
+My login works on desktop but fails on mobile,account_access
+Can't access my account after changing my email address,account_access
+Security question answers aren't being accepted,account_access
+My account was suspended without explanation,account_access
+SSO login redirects me back to the sign-in page in a loop,account_access
+I never received the confirmation email to activate my account,account_access
+My password works but it still says invalid credentials,account_access
+Account recovery process is asking for information I don't have,account_access
+Login page just spins and never loads after I submit,account_access
+"I think my account was hacked, strange activity in my history",account_access
+Changed my phone number and now MFA won't send codes,account_access
+My account merged with someone else's after a system update,account_access
+Can't unlink my old email from the account settings,account_access
+Getting an account not found error even though I've logged in before,account_access
+New device login keeps getting flagged and blocked,account_access
+Reset my password but the old one still works too,account_access
+Access denied message after clicking the link in my welcome email,account_access
+My team member can't get invited to join the workspace,account_access
+Browser says my session is invalid immediately after logging in,account_access
+Trying to log in from a different country flags my account,account_access
+Password manager autofill isn't accepted by the login form,account_access
+I have two accounts under the same email somehow,account_access
+Verification code sent to an old email I no longer use,account_access
+Admin removed my access and I need it restored,account_access
+Login attempts are being rate limited even on the first try,account_access
+My account got flagged as suspicious after a normal login,account_access
+Can't reset password because the security email bounces,account_access
+Signed in with Google but it created a duplicate account,account_access
+My account got locked after too many failed 2FA attempts,account_access
+I can't reset my password because I no longer have access to my old phone number,account_access
+Getting logged out immediately after signing in on my laptop,account_access
+My biometric login stopped working after the app update,account_access
+I never got an invite email to set up my account,account_access
+My account shows as deactivated but I never deactivated it,account_access
+Login keeps failing with an unknown error code,account_access
+I can't switch between my two workspaces anymore,account_access
+My recovery codes for 2FA don't work,account_access
+Account settings page won't load so I can't update my email,account_access
+I'm stuck on a captcha loop when trying to log in,account_access
+My admin access was revoked without warning,account_access
+Password reset email keeps going to spam and now the link is dead,account_access
+I get logged into someone else's account randomly,account_access
+My organization's SSO provider isn't recognized anymore,account_access
+Account says it's already registered but I never signed up,account_access
+I can't log in after my trial converted to a paid plan,account_access
+My session keeps timing out even when I'm actively using it,account_access
+Two-step verification texts arrive but the codes are already expired,account_access
+I was signed out of all devices and can't sign back in,account_access
+The app crashes every time I try to log in,technical_issue
+I'm getting a 500 error when I open the dashboard,technical_issue
+The page freezes when I click submit,technical_issue
+My uploads keep failing halfway through,technical_issue
+Notifications stopped working after the last update,technical_issue
+The mobile app force closes when I open the camera feature,technical_issue
+Export to CSV button does nothing when clicked,technical_issue
+Data isn't syncing between my phone and desktop,technical_issue
+The search bar returns no results even for valid queries,technical_issue
+Getting a blank white screen after the loading spinner,technical_issue
+My changes aren't saving even after I click save,technical_issue
+The dashboard graphs show no data even though I have records,technical_issue
+App is extremely slow to load on my connection,technical_issue
+Integration with our calendar app stopped working,technical_issue
+I keep getting a timeout error when generating reports,technical_issue
+The dark mode toggle doesn't actually change anything,technical_issue
+File attachments won't open once uploaded,technical_issue
+Getting duplicate entries every time I refresh,technical_issue
+The app logs me out randomly during use,technical_issue
+My settings reset back to default every time I restart,technical_issue
+API requests are returning 403 errors intermittently,technical_issue
+The bulk edit feature only applies to the first item selected,technical_issue
+Push notifications arrive hours late,technical_issue
+The print preview shows a broken layout,technical_issue
+Copy-paste isn't working inside the text editor,technical_issue
+The app freezes specifically when switching between tabs,technical_issue
+Webhook events aren't triggering our automation,technical_issue
+Images upload but never appear in the gallery,technical_issue
+The undo button doesn't restore the previous state,technical_issue
+Performance drops significantly after using the app for a while,technical_issue
+Keyboard shortcuts stopped responding after the update,technical_issue
+The calendar view shows events on the wrong dates,technical_issue
+My filters reset every time I navigate away from the page,technical_issue
+Getting an infinite loading spinner on the reports page,technical_issue
+The chat widget disconnects randomly mid-conversation,technical_issue
+Drag and drop isn't working for reordering items,technical_issue
+The app shows an outdated version number after updating,technical_issue
+"Error message pops up with no explanation, just a code",technical_issue
+Video playback stutters constantly on the platform,technical_issue
+The autosave feature seems to be silently failing,technical_issue
+The app won't open at all after the latest update,technical_issue
+My reports are missing the last week of data,technical_issue
+The mobile app keeps crashing on the home screen,technical_issue
+Filters don't reset properly and mix results from previous searches,technical_issue
+The export feature times out on large datasets,technical_issue
+My dashboard widgets show stale data from yesterday,technical_issue
+The app doesn't remember my preferences between sessions,technical_issue
+Uploading a file larger than 10MB always fails,technical_issue
+The comment section doesn't load on shared documents,technical_issue
+My integration with Slack randomly disconnects,technical_issue
+The site loads fine on Chrome but is broken on Safari,technical_issue
+Bulk delete only removes one item instead of all selected,technical_issue
+The notification bell shows a count but the list is empty,technical_issue
+Charts render incorrectly when I switch time zones,technical_issue
+The app gets stuck on a loading screen after login,technical_issue
+My custom fields disappeared after the recent update,technical_issue
+Search autocomplete suggests nothing even for common terms,technical_issue
+The API returns malformed JSON intermittently,technical_issue
+Video calls drop every few minutes inside the app,technical_issue
+The app doesn't sync properly when I switch networks,technical_issue
+The app crashes every time I try to export a report to PDF,technical_issue
+Exporting a report to PDF crashes the app before it finishes,technical_issue
+The app freezes and crashes whenever I try to download a PDF export,technical_issue
+Trying to export my data as a PDF causes the app to crash immediately,technical_issue
+Can you add dark mode to the app,feature_request
+Would love the ability to export reports to PDF,feature_request
+Please add integration with Google Calendar,feature_request
+It would help to have bulk actions for managing items,feature_request
+Can we get keyboard shortcuts for common actions,feature_request
+A mobile app would make this much easier to use on the go,feature_request
+Please support multiple languages in the interface,feature_request
+Would be great to have API access for custom integrations,feature_request
+Can you add the ability to schedule reports automatically,feature_request
+It would help to have custom fields for our workflow,feature_request
+Please add a way to undo bulk deletions,feature_request
+Would love offline mode for when I don't have internet,feature_request
+Can we get a way to duplicate templates instead of starting over,feature_request
+Please add support for two-factor authentication via app instead of SMS,feature_request
+It would help to have a dark theme option for the mobile app too,feature_request
+Can you add filters for date ranges in the analytics page,feature_request
+Would be great to tag and categorize items for easier searching,feature_request
+Please add the option to export data as Excel not just CSV,feature_request
+Can we get role-based permissions for team members,feature_request
+It would help to have a Slack integration for notifications,feature_request
+Please allow custom branding on shared reports,feature_request
+Would love a way to set recurring reminders,feature_request
+Can you add drag-and-drop file uploads,feature_request
+Please support single sign-on for enterprise accounts,feature_request
+It would help to have version history for documents,feature_request
+Can we get a comparison view between two time periods,feature_request
+Please add a way to merge duplicate entries automatically,feature_request
+Would love keyboard navigation for accessibility,feature_request
+Can you add a public API changelog so we know what's new,feature_request
+Please add support for custom currencies in billing reports,feature_request
+It would help to have a sandbox environment for testing,feature_request
+Can we get email digests instead of individual notifications,feature_request
+Please add the ability to archive old projects instead of deleting them,feature_request
+Would love a way to share dashboards with view-only access,feature_request
+Can you add support for importing data from competitor platforms,feature_request
+Please add a dark mode toggle that follows system settings,feature_request
+It would help to have inline commenting on shared documents,feature_request
+Can we get a way to set up approval workflows,feature_request
+Please support webhooks for third-party automation,feature_request
+Would love a calendar heatmap view of activity over time,feature_request
+Could you add a way to bulk export ticket history,feature_request
+It would help to have saved search filters,feature_request
+Please add support for custom notification sounds,feature_request
+Can we get a way to pin important items to the top,feature_request
+Would love the ability to set different permissions per project,feature_request
+Please add a night mode that's easier on the eyes than the current dark mode,feature_request
+Can you add an undo option after bulk actions,feature_request
+It would help to have a changelog widget inside the app,feature_request
+Please add support for importing CSVs with custom column mapping,feature_request
+Can we get a way to schedule exports to run automatically every week,feature_request
+Would love a quick-add shortcut from the browser toolbar,feature_request
+Please add multi-select for tagging several items at once,feature_request
+"Can you add a way to duplicate a whole project, not just one item",feature_request
+It would help to have activity logs per user,feature_request
+Please add a snooze option for notifications,feature_request
+Can we get customizable dashboard layouts,feature_request
+Would love the ability to leave internal notes on tickets,feature_request
+Please add support for two-way calendar syncing,feature_request
+Can you add a way to merge two accounts into one,feature_request
+It would help to have a print-friendly view for reports,feature_request

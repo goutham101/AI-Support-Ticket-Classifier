@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Support Ticket Classifier</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  :root {
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --border: #e2e4e9;
+    --text: #16181d;
+    --text-muted: #6b7280;
+    --text-faint: #9aa1ac;
+    --focus-ring: #1f2933;
+
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    /* deliberate, distinct queue colors — text / bg / accent(bar+dot) */
+    --billing-text: #92400e;
+    --billing-bg: #fef3c7;
+    --billing-border: #f3d38a;
+    --billing-accent: #d69a2d;
+
+    --access-text: #5b21b6;
+    --access-bg: #ede9fe;
+    --access-border: #cabdf5;
+    --access-accent: #8b5cf6;
+
+    --tech-text: #9f1239;
+    --tech-bg: #ffe4e6;
+    --tech-border: #f7b7bf;
+    --tech-accent: #fb7185;
+
+    --feature-text: #115e59;
+    --feature-bg: #ccfbf1;
+    --feature-border: #94ede1;
+    --feature-accent: #2dd4bf;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 48px 20px 32px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  main {
+    width: 100%;
+    max-width: 640px;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .subhead {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0 0 24px;
+    line-height: 1.5;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin: 0 0 10px;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .chip {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 6px 12px 6px 10px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: filter 0.12s ease;
+  }
+
+  .chip:hover { filter: brightness(0.97); }
+  .chip:active { filter: brightness(0.93); }
+
+  .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .chip-billing   { color: var(--billing-text);  background: var(--billing-bg);  border-color: var(--billing-border); }
+  .chip-billing .chip-dot { background: var(--billing-accent); }
+  .chip-account_access   { color: var(--access-text);  background: var(--access-bg);  border-color: var(--access-border); }
+  .chip-account_access .chip-dot { background: var(--access-accent); }
+  .chip-technical_issue  { color: var(--tech-text);    background: var(--tech-bg);    border-color: var(--tech-border); }
+  .chip-technical_issue .chip-dot { background: var(--tech-accent); }
+  .chip-feature_request  { color: var(--feature-text); background: var(--feature-bg); border-color: var(--feature-border); }
+  .chip-feature_request .chip-dot { background: var(--feature-accent); }
+
+  textarea {
+    width: 100%;
+    height: 110px;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    resize: vertical;
+    color: var(--text);
+    background: var(--surface);
+  }
+
+  textarea::placeholder { color: var(--text-faint); }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  button#submitBtn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--focus-ring);
+    border: none;
+    border-radius: 7px;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: background 0.12s ease, opacity 0.12s ease;
+  }
+
+  button#submitBtn:hover:not(:disabled) { background: #2d3542; }
+  button#submitBtn:disabled { opacity: 0.6; cursor: default; }
+
+  .hint {
+    font-size: 0.82rem;
+    color: var(--text-faint);
+  }
+
+  :is(.chip, button, textarea):focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  #error {
+    display: none;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  #result {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    display: none;
+  }
+
+  #result.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .result-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+  }
+
+  .badge-billing   { color: var(--billing-text);  background: var(--billing-bg);  border-color: var(--billing-border); }
+  .badge-account_access   { color: var(--access-text);  background: var(--access-bg);  border-color: var(--access-border); }
+  .badge-technical_issue  { color: var(--tech-text);    background: var(--tech-bg);    border-color: var(--tech-border); }
+  .badge-feature_request  { color: var(--feature-text); background: var(--feature-bg); border-color: var(--feature-border); }
+
+  .confidence-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .confidence-track {
+    height: 7px;
+    border-radius: 999px;
+    background: #eceef1;
+    overflow: hidden;
+  }
+
+  .confidence-fill {
+    height: 100%;
+    border-radius: 999px;
+    width: 0%;
+    transition: width 0.35s ease;
+  }
+
+  .fill-billing  { background: var(--billing-accent); }
+  .fill-account_access  { background: var(--access-accent); }
+  .fill-technical_issue { background: var(--tech-accent); }
+  .fill-feature_request { background: var(--feature-accent); }
+
+  footer {
+    margin-top: 28px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 32px 14px 24px; }
+    .card { padding: 16px; }
+    .row { flex-wrap: wrap; }
+    .hint { width: 100%; order: 2; }
+  }
+</style>
+</head>
+<body>
+  <main>
+    <div class="header">
+      <div class="eyebrow">Ticket triage / internal tool</div>
+      <h1>Support Ticket Classifier</h1>
+      <p class="subhead">Paste a support ticket below and get its predicted queue.</p>
+    </div>
+
+    <div class="card">
+      <p class="section-label">Try an example</p>
+      <div class="chips" id="chips">
+        <button type="button" class="chip chip-billing" data-category="billing"
+          data-text="I was charged twice for my subscription this month and need a refund.">
+          <span class="chip-dot"></span>Billing
+        </button>
+        <button type="button" class="chip chip-account_access" data-category="account_access"
+          data-text="I can't log into my account — it says my password is wrong even after I reset it.">
+          <span class="chip-dot"></span>Account access
+        </button>
+        <button type="button" class="chip chip-technical_issue" data-category="technical_issue"
+          data-text="The app crashes every time I try to export a report to PDF.">
+          <span class="chip-dot"></span>Technical issue
+        </button>
+        <button type="button" class="chip chip-feature_request" data-category="feature_request"
+          data-text="Can you add dark mode to the dashboard? Would help a lot at night.">
+          <span class="chip-dot"></span>Feature request
+        </button>
+      </div>
+
+      <textarea id="ticketText" placeholder="e.g. I was charged twice for my subscription this month"></textarea>
+
+      <div class="row">
+        <button id="submitBtn">Classify</button>
+        <span class="hint" id="hint">Enter a ticket to classify</span>
+      </div>
+
+      <div id="error"></div>
+
+      <div id="result">
+        <div class="result-top">
+          <span class="hint" style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.72rem;">Predicted queue</span>
+          <span class="badge" id="badge"></span>
+        </div>
+        <div class="confidence-label">
+          <span>Confidence</span>
+          <span id="confidenceValue">—</span>
+        </div>
+        <div class="confidence-track">
+          <div class="confidence-fill" id="confidenceFill"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const CATEGORIES = ["billing", "account_access", "technical_issue", "feature_request"];
+
+    const btn = document.getElementById("submitBtn");
+    const textEl = document.getElementById("ticketText");
+    const resultEl = document.getElementById("result");
+    const errorEl = document.getElementById("error");
+    const hintEl = document.getElementById("hint");
+    const badgeEl = document.getElementById("badge");
+    const confidenceValueEl = document.getElementById("confidenceValue");
+    const confidenceFillEl = document.getElementById("confidenceFill");
+    const chipsEl = document.getElementById("chips");
+
+    function resetPanels() {
+      resultEl.classList.remove("show");
+      errorEl.style.display = "none";
+    }
+
+    function labelFor(category) {
+      return category.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    }
+
+    async function classify() {
+      const text = textEl.value.trim();
+      resetPanels();
+
+      if (!text) {
+        hintEl.textContent = "Enter a ticket to classify";
+        hintEl.style.display = "inline";
+        return;
+      }
+
+      hintEl.style.display = "none";
+      btn.disabled = true;
+      btn.textContent = "Classifying…";
+
+      try {
+        const res = await fetch("/classify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.detail || "Classification failed.");
+        }
+
+        CATEGORIES.forEach((c) => {
+          badgeEl.classList.remove("badge-" + c);
+          confidenceFillEl.classList.remove("fill-" + c);
+        });
+        badgeEl.classList.add("badge-" + data.category);
+        confidenceFillEl.classList.add("fill-" + data.category);
+        badgeEl.textContent = labelFor(data.category);
+
+        const pct = Math.round(data.confidence * 100);
+        confidenceValueEl.textContent = pct + "%";
+        confidenceFillEl.style.width = pct + "%";
+
+        resultEl.classList.add("show");
+      } catch (err) {
+        errorEl.textContent = err.message || "Classification failed — check that the API server is running.";
+        errorEl.style.display = "block";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Classify";
+      }
+    }
+
+    btn.addEventListener("click", classify);
+
+    textEl.addEventListener("input", () => {
+      if (textEl.value.trim()) {
+        hintEl.style.display = "none";
+      } else {
+        hintEl.textContent = "Enter a ticket to classify";
+        hintEl.style.display = "inline";
+      }
+    });
+
+    chipsEl.addEventListener("click", (e) => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      textEl.value = chip.dataset.text;
+      textEl.focus();
+      classify();
+    });
+  </script>
+</body>
+</html>
