@@ -4,8 +4,10 @@ Classifies unstructured support ticket text into categories (billing, technical_
 account_access, feature_request) using a TF-IDF + Naive Bayes / Logistic Regression
 pipeline, served via FastAPI with a minimal web UI.
 
-**Live demo:** _add your deployed URL here once you deploy_
-**Screenshot:** _add a screenshot of the UI here_
+**Live demo:** https://ticket-classifier-gbus.onrender.com/static/index.html
+**Screenshot:** <img width="1482" height="809" alt="image" src="https://github.com/user-attachments/assets/c246bdad-938c-4652-aa65-543aad04868c" />
+
+
 
 ## Why this exists
 
