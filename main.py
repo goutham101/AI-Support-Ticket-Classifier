@@ -56,9 +56,11 @@ class TicketResponse(BaseModel):
     confidence: float
 
 
+from fastapi.responses import RedirectResponse
+
 @app.get("/")
 def root():
-    return {"message": "Support Ticket Classifier API. See /docs for usage."}
+    return RedirectResponse(url="/static/index.html")
 
 
 @app.get("/health")
