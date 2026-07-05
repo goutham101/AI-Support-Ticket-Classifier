@@ -5,6 +5,8 @@ account_access, feature_request) using a TF-IDF + Naive Bayes / Logistic Regress
 pipeline, served via FastAPI with a minimal web UI.
 
 **Live demo:** https://ticket-classifier-gbus.onrender.com/static/index.html
+
+
 **Screenshot:** 
 <img width="1482" height="809" alt="image" src="https://github.com/user-attachments/assets/c246bdad-938c-4652-aa65-543aad04868c" />
 
