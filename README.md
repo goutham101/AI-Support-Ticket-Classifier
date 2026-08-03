@@ -107,7 +107,7 @@ categories is 0.25, so this is meaningfully above chance).
 
 ## Deployment
 
-Deployed on [Render / Railway / Hugging Face Spaces — pick one] using the included
+Deployed on Render using the included
 `requirements.txt`. Start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`.
 
 ## Possible extensions
