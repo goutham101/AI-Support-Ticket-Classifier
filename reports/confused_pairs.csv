@@ -1,0 +1,11 @@
+true_label,predicted_label,count
+why_verify_identity,verify_my_identity,28
+verify_my_identity,why_verify_identity,20
+top_up_by_bank_transfer_charge,transfer_fee_charged,18
+order_physical_card,getting_spare_card,15
+getting_spare_card,order_physical_card,14
+disposable_card_limits,get_disposable_virtual_card,13
+fiat_currency_support,exchange_via_app,13
+get_disposable_virtual_card,disposable_card_limits,13
+Refund_not_showing_up,request_refund,12
+balance_not_updated_after_bank_transfer,transfer_not_received_by_recipient,12

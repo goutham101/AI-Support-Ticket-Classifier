@@ -1,0 +1,41 @@
+ticket_text,category
+There is a  €1 fee on my account I didn't authorize,extra_charge_on_statement
+There is a pending 1£ charge on my statement.  I haven't purchased anything for 1£.  Why is it on my statement?,extra_charge_on_statement
+Where did this extra €1 fee on my statement come from?,extra_charge_on_statement
+I took out some cash from the ATM but it is still showing the transaction is pending.,pending_cash_withdrawal
+I requested a refund from a store but it hasn't arrived.,Refund_not_showing_up
+Help me order a new card that's going to be expired soon.,card_about_to_expire
+I dont see my reciept,transfer_not_received_by_recipient
+My cash in the ATM is still pending,pending_cash_withdrawal
+Why hasn't my friend received the money i sent them yet?,transfer_not_received_by_recipient
+Where is the nearest bank machine?,atm_support
+There should be a cash withdrawal that I haven't seen yet.,pending_cash_withdrawal
+Is the closest ATM to me within 2 miles?,atm_support
+Tell me what I should do after my card expires.,card_about_to_expire
+I bought something and already paid for it but now I don't see it.,reverted_card_payment?
+why was my payment reverted on the app,reverted_card_payment?
+Is there a list of ATMs that take this card?,atm_support
+What is the extra  €1 fee in my statement,extra_charge_on_statement
+"I used to know my password, but not anymore.",passcode_forgotten
+I contacted a seller about a refund last week but he still hasn't returned my money. I am frustrated and need these funds. Please help me get my money back.,Refund_not_showing_up
+My payment did not go through because the app reverted it,reverted_card_payment?
+Where are the ATMs that accept this card?,atm_support
+How do I know when my card will expire?,card_about_to_expire
+How come my refund hasn't appeared on my statement?,Refund_not_showing_up
+How long does the cash withdrawal take to pend?,pending_cash_withdrawal
+Tell me how to reset the passcode.,passcode_forgotten
+I can't see my refund in my history.,Refund_not_showing_up
+Please help me with my card payments which keeps getting reverted whenever i do online shopping. I am having this problem since last two weeks.,reverted_card_payment?
+I am still waiting for a transaction to be completed,transfer_not_received_by_recipient
+I've been checking my statement to see if I've received a refund I requested from a seller a while ago has arrived. But it has not. This should have come back to me already. Can you help me figure out why it's not here and get my money back?,Refund_not_showing_up
+"I sent money to someone but they haven't gotten it, what's going on?",transfer_not_received_by_recipient
+Why doesn't my passcode work?,passcode_forgotten
+I believe that a card payment I made was cancelled.,reverted_card_payment?
+How much does it cost to get a new card?  Mine is almost expired.  How fast does it come?,card_about_to_expire
+how to recover my passcode,passcode_forgotten
+why was i charged a small amount,extra_charge_on_statement
+Can you tell me my code to get into the app?,passcode_forgotten
+How can I tell if an AMT will take this card?,atm_support
+"Once my card expires, what should I do?",card_about_to_expire
+"My cash withdrawal says pending, why?",pending_cash_withdrawal
+"I'm trying to make a payment to my new landlord. Even though the payment was sent a few days ago, it isn't clearing on their side. Can you verify that payment has been made?",transfer_not_received_by_recipient

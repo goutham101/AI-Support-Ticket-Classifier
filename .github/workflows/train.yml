@@ -1,0 +1,44 @@
+name: train
+
+# The trained model isn't committed to the repo anymore (see .gitignore --
+# a binary artifact that changes every training run doesn't belong in git
+# history). This workflow rebuilds it on every push and attaches it to the
+# run so it's still retrievable without anyone needing to train locally.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install training dependencies
+        # Intentionally not the full requirements.txt: sentence-transformers
+        # pulls in torch (~100MB+), which this job doesn't need -- it only
+        # runs load_data.py and train.py, not train_transformer.py.
+        run: pip install pandas scikit-learn==1.9.0 joblib httpx matplotlib
+
+      - name: Download dataset
+        run: python load_data.py
+
+      - name: Train model
+        run: python train.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: best_ticket_classifier
+          path: best_ticket_classifier.joblib
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: training-reports
+          path: reports/
+          retention-days: 30

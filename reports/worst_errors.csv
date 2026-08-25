@@ -1,0 +1,31 @@
+ticket_text,true_label,predicted_label,confidence
+My transfer is pending.,balance_not_updated_after_bank_transfer,pending_transfer,0.997880343434
+Card payment has be declined.,reverted_card_payment?,declined_card_payment,0.9978517414362262
+My cheque is slow to cash,balance_not_updated_after_cheque_or_cash_deposit,top_up_by_cash_or_cheque,0.9921358289826777
+Where do I find PIN for my card?,pin_blocked,get_physical_card,0.9879465566883051
+Can I put my found card back into the app on my phone?,card_linking,lost_or_stolen_phone,0.9794113004363864
+My transfer is pending too long.,balance_not_updated_after_bank_transfer,pending_transfer,0.9781921986970042
+Do I get a card to keep in my wallet?,order_physical_card,topping_up_by_card,0.9769920625513961
+Why did my payment get declined?,declined_transfer,declined_card_payment,0.9762977217163058
+Do i have to verify who I am?,why_verify_identity,verify_top_up,0.9761179273990425
+why must I prove ID,verify_my_identity,unable_to_verify_identity,0.9752796594216817
+Can I top up my card with other cards?,supported_cards_and_currencies,getting_spare_card,0.9711157174542608
+There is a payment I don't recognise!,direct_debit_payment_not_recognised,card_payment_not_recognised,0.9685279713036693
+can i get a virtual card,get_disposable_virtual_card,getting_virtual_card,0.9666889905077373
+How can I alteration my PIN?,change_pin,get_physical_card,0.9611597090070241
+The card payment didn't work,reverted_card_payment?,declined_card_payment,0.9604680180444543
+My wallet was stolen and all my credit cards were in there.  HELP?!!?,compromised_card,lost_or_stolen_card,0.9586924958861273
+Do I need to convert my currency from GBP before transferring?,receiving_money,exchange_via_app,0.9571944140669979
+What is my money worth in other countries?,exchange_rate,country_support,0.9551207321313088
+What all am I required to show for the identity check?,verify_my_identity,why_verify_identity,0.9545506126030789
+how do i dispute a payment I didnt make,card_payment_not_recognised,direct_debit_payment_not_recognised,0.9518022604599082
+How much does it cost in fees to use your card?,order_physical_card,top_up_by_card_charge,0.9451458211514432
+How much do you charge for exchange rates?,exchange_charge,exchange_rate,0.9421304323241909
+How long will it take for me to get my card?,card_arrival,card_delivery_estimate,0.9394953596860297
+HOW LONG THE CARD VALIDITY,card_not_working,card_delivery_estimate,0.9394953596860297
+What are the fees for top-ups?,top_up_by_bank_transfer_charge,top_up_by_card_charge,0.9389297662104374
+How can I deposit money to my account?,transfer_into_account,balance_not_updated_after_cheque_or_cash_deposit,0.9383041233875161
+Why didn't my top up work?,top_up_reverted,top_up_failed,0.9379194770873446
+Where are the cards transported to?,order_physical_card,getting_spare_card,0.9361403755548379
+how many transactions can i make with a disposable card,get_disposable_virtual_card,disposable_card_limits,0.9357092313073742
+Can you explain why my payment is still pending?,pending_transfer,pending_card_payment,0.9337354525978484

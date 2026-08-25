@@ -11,6 +11,7 @@ Then open:
 """
 
 from pathlib import Path
+from typing import List
 
 import joblib
 from fastapi import FastAPI, HTTPException
@@ -19,9 +20,22 @@ from pydantic import BaseModel, field_validator
 
 MODEL_PATH = Path(__file__).parent / "best_ticket_classifier.joblib"
 
+# Picked with select_threshold.py on 2026-08-04: the smallest threshold where
+# precision on the *accepted* subset (predictions confident enough to keep)
+# exceeds 95%, measured on cross-validated dev-set predictions (never the
+# held-out test set). At 0.61: precision 0.9505, coverage 0.7344 -- about a
+# quarter of tickets fall below this and get routed to a human instead of a
+# guess. See reports/threshold_sweep.csv for the full sweep.
+CONFIDENCE_THRESHOLD = 0.61
+TOP_K = 3
+
+
+def is_low_confidence(confidence: float) -> bool:
+    return confidence < CONFIDENCE_THRESHOLD
+
 app = FastAPI(
     title="Support Ticket Classifier API",
-    description="Classifies support ticket text into billing, technical, or account_access.",
+    description="Classifies banking support tickets into 77 fine-grained categories.",
     version="1.0.0",
 )
 
@@ -51,9 +65,16 @@ class TicketRequest(BaseModel):
         return v.strip()
 
 
+class TopKPrediction(BaseModel):
+    category: str
+    probability: float
+
+
 class TicketResponse(BaseModel):
     category: str
     confidence: float
+    needs_review: bool
+    top_k: List[TopKPrediction]
 
 
 from fastapi.responses import RedirectResponse
@@ -77,15 +98,25 @@ def classify(request: TicketRequest):
         )
 
     try:
-        prediction = model.predict([request.text])[0]
-        # Not every sklearn estimator supports predict_proba (e.g. some SVMs).
-        # Guard so the endpoint never crashes on that.
-        if hasattr(model, "predict_proba"):
-            confidence = float(max(model.predict_proba([request.text])[0]))
-        else:
-            confidence = 1.0
+        # Not every sklearn estimator supports predict_proba (e.g. some SVMs),
+        # but every model this project trains does -- if that ever changes,
+        # fail loudly instead of silently reporting fake confidence.
+        proba = model.predict_proba([request.text])[0]
+        ranked = sorted(zip(model.classes_, proba), key=lambda pair: pair[1], reverse=True)
     except Exception as exc:
         # Never leak internals to the client; log server-side in a real deployment.
         raise HTTPException(status_code=500, detail="Prediction failed.") from exc
 
-    return TicketResponse(category=prediction, confidence=round(confidence, 4))
+    top_label, top_confidence = ranked[0]
+    needs_review = is_low_confidence(top_confidence)
+    top_k = [
+        TopKPrediction(category=label, probability=round(float(prob), 4))
+        for label, prob in ranked[:TOP_K]
+    ]
+
+    return TicketResponse(
+        category="needs_review" if needs_review else top_label,
+        confidence=round(float(top_confidence), 4),
+        needs_review=needs_review,
+        top_k=top_k,
+    )
