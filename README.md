@@ -4,8 +4,13 @@ Classifies banking support tickets into 77 fine-grained categories using TF-IDF 
 Logistic Regression, trained on the real [Banking77](https://arxiv.org/abs/2003.04807)
 dataset and served via FastAPI with a minimal web UI.
 
-**Live demo:** _add your deployed URL here once you deploy_
-**Screenshot:** _add a screenshot of the UI here_
+**Live demo:** https://ticket-classifier-gbus.onrender.com/static/index.html
+
+
+**Screenshot:** 
+<img width="1482" height="809" alt="image" src="https://github.com/user-attachments/assets/c246bdad-938c-4652-aa65-543aad04868c" />
+
+
 
 ## Results
 
@@ -202,11 +207,15 @@ pytest                    # everything, 9 tests, ~1.4s
 pytest -m "not slow"      # fast suite only (skips the CV regression test), ~1.2s
 ```
 
-Deployment: `uvicorn main:app --host 0.0.0.0 --port $PORT` on whatever host you pick.
+Deployment: deployed on Render (see live demo link at the top), start command
+`uvicorn main:app --host 0.0.0.0 --port $PORT`. **Since `best_ticket_classifier.joblib`
+is no longer committed (see Architecture below), Render's build command needs to
+actually produce it** — e.g. `pip install -r requirements.txt && python load_data.py &&
+python train.py` — or `/classify` will 503 with "Model not loaded" on a fresh deploy.
 `requirements.txt` includes `sentence-transformers` (and `torch`) for
 `train_transformer.py`'s comparison above, but `main.py` never imports it — if
-disk/memory is tight on a free tier, those three packages can be dropped from the deploy
-environment; nothing at request time needs them.
+disk/memory is tight on a free tier, those three packages can be dropped from the
+deploy environment; nothing at request time needs them.
 
 ## Architecture
 
