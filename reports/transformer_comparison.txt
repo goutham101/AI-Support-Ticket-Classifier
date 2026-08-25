@@ -1,0 +1,8 @@
+embedding_cv_f1_mean=0.9069
+embedding_cv_f1_std=0.0054
+embedding_holdout_f1=0.9100
+transformer_latency_ms=5.74
+tfidf_latency_ms=0.17
+tfidf_size_mb=1.31
+transformer_head_size_mb=0.12
+embedding_model_size_mb=87.3

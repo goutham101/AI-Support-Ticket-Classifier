@@ -7,3 +7,5 @@ venv/
 .claude/
 VibeSec-Skill/
 .DS_Store
+data/
+*.joblib

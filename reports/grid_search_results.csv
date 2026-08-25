@@ -1,0 +1,3 @@
+model,best_params,best_macro_f1_mean,best_macro_f1_std
+naive_bayes,"{'model__alpha': 0.1, 'tfidf__min_df': 1, 'tfidf__ngram_range': (1, 2)}",0.8128681892274467,0.01344628326305445
+logistic_regression,"{'model__C': 10, 'tfidf__min_df': 1, 'tfidf__ngram_range': (1, 1)}",0.8422855820107584,0.007945391827874241

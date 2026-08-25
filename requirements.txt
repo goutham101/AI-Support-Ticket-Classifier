@@ -5,3 +5,5 @@ fastapi
 uvicorn[standard]
 pytest
 httpx
+matplotlib
+sentence-transformers

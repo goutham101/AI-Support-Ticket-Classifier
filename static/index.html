@@ -25,26 +25,18 @@
     --font-sans: "Inter", system-ui, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-    /* deliberate, distinct queue colors — text / bg / accent(bar+dot) */
-    --billing-text: #92400e;
-    --billing-bg: #fef3c7;
-    --billing-border: #f3d38a;
-    --billing-accent: #d69a2d;
+    /* one accent for a confident prediction, one for "needs review" --
+       with 77 possible categories there's no sane way to hand-pick a
+       color per class like the old 4-category version did */
+    --ok-text: #115e59;
+    --ok-bg: #ccfbf1;
+    --ok-border: #94ede1;
+    --ok-accent: #2dd4bf;
 
-    --access-text: #5b21b6;
-    --access-bg: #ede9fe;
-    --access-border: #cabdf5;
-    --access-accent: #8b5cf6;
-
-    --tech-text: #9f1239;
-    --tech-bg: #ffe4e6;
-    --tech-border: #f7b7bf;
-    --tech-accent: #fb7185;
-
-    --feature-text: #115e59;
-    --feature-bg: #ccfbf1;
-    --feature-border: #94ede1;
-    --feature-accent: #2dd4bf;
+    --review-text: #92400e;
+    --review-bg: #fef3c7;
+    --review-border: #f3d38a;
+    --review-accent: #d69a2d;
   }
 
   * { box-sizing: border-box; }
@@ -121,34 +113,17 @@
     font-family: var(--font-sans);
     font-size: 0.8rem;
     font-weight: 500;
-    padding: 6px 12px 6px 10px;
+    padding: 6px 12px;
     border-radius: 999px;
-    border: 1px solid transparent;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-muted);
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
     transition: filter 0.12s ease;
   }
 
   .chip:hover { filter: brightness(0.97); }
   .chip:active { filter: brightness(0.93); }
-
-  .chip-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .chip-billing   { color: var(--billing-text);  background: var(--billing-bg);  border-color: var(--billing-border); }
-  .chip-billing .chip-dot { background: var(--billing-accent); }
-  .chip-account_access   { color: var(--access-text);  background: var(--access-bg);  border-color: var(--access-border); }
-  .chip-account_access .chip-dot { background: var(--access-accent); }
-  .chip-technical_issue  { color: var(--tech-text);    background: var(--tech-bg);    border-color: var(--tech-border); }
-  .chip-technical_issue .chip-dot { background: var(--tech-accent); }
-  .chip-feature_request  { color: var(--feature-text); background: var(--feature-bg); border-color: var(--feature-border); }
-  .chip-feature_request .chip-dot { background: var(--feature-accent); }
 
   textarea {
     width: 100%;
@@ -236,7 +211,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 14px;
+    margin-bottom: 6px;
   }
 
   .badge {
@@ -250,10 +225,15 @@
     border: 1px solid transparent;
   }
 
-  .badge-billing   { color: var(--billing-text);  background: var(--billing-bg);  border-color: var(--billing-border); }
-  .badge-account_access   { color: var(--access-text);  background: var(--access-bg);  border-color: var(--access-border); }
-  .badge-technical_issue  { color: var(--tech-text);    background: var(--tech-bg);    border-color: var(--tech-border); }
-  .badge-feature_request  { color: var(--feature-text); background: var(--feature-bg); border-color: var(--feature-border); }
+  .badge-ok { color: var(--ok-text); background: var(--ok-bg); border-color: var(--ok-border); }
+  .badge-review { color: var(--review-text); background: var(--review-bg); border-color: var(--review-border); }
+
+  .review-note {
+    font-size: 0.82rem;
+    color: var(--review-text);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
 
   .confidence-label {
     font-family: var(--font-mono);
@@ -271,6 +251,7 @@
     border-radius: 999px;
     background: #eceef1;
     overflow: hidden;
+    margin-bottom: 16px;
   }
 
   .confidence-fill {
@@ -280,10 +261,43 @@
     transition: width 0.35s ease;
   }
 
-  .fill-billing  { background: var(--billing-accent); }
-  .fill-account_access  { background: var(--access-accent); }
-  .fill-technical_issue { background: var(--tech-accent); }
-  .fill-feature_request { background: var(--feature-accent); }
+  .fill-ok { background: var(--ok-accent); }
+  .fill-review { background: var(--review-accent); }
+
+  .topk-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+  }
+
+  .topk-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    padding: 5px 0;
+  }
+
+  .topk-category {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .topk-prob {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    width: 44px;
+    text-align: right;
+  }
 
   footer {
     margin-top: 28px;
@@ -307,31 +321,19 @@
     <div class="header">
       <div class="eyebrow">Ticket triage / internal tool</div>
       <h1>Support Ticket Classifier</h1>
-      <p class="subhead">Paste a support ticket below and get its predicted queue.</p>
+      <p class="subhead">Paste a support ticket below and get its predicted category (77 banking intents). Low-confidence tickets are flagged for human review instead of guessed.</p>
     </div>
 
     <div class="card">
       <p class="section-label">Try an example</p>
       <div class="chips" id="chips">
-        <button type="button" class="chip chip-billing" data-category="billing"
-          data-text="I was charged twice for my subscription this month and need a refund.">
-          <span class="chip-dot"></span>Billing
-        </button>
-        <button type="button" class="chip chip-account_access" data-category="account_access"
-          data-text="I can't log into my account — it says my password is wrong even after I reset it.">
-          <span class="chip-dot"></span>Account access
-        </button>
-        <button type="button" class="chip chip-technical_issue" data-category="technical_issue"
-          data-text="The app crashes every time I try to export a report to PDF.">
-          <span class="chip-dot"></span>Technical issue
-        </button>
-        <button type="button" class="chip chip-feature_request" data-category="feature_request"
-          data-text="Can you add dark mode to the dashboard? Would help a lot at night.">
-          <span class="chip-dot"></span>Feature request
-        </button>
+        <button type="button" class="chip" data-text="I'm still waiting for my new card.">Card arrival</button>
+        <button type="button" class="chip" data-text="I have a problem! The ATM stole my card!">Card swallowed</button>
+        <button type="button" class="chip" data-text="How long does it take to show a deposit I made to my balance?">Deposit timing</button>
+        <button type="button" class="chip" data-text="hello I have a question about something">Vague (triggers review)</button>
       </div>
 
-      <textarea id="ticketText" placeholder="e.g. I was charged twice for my subscription this month"></textarea>
+      <textarea id="ticketText" placeholder="e.g. My card still hasn't arrived after two weeks"></textarea>
 
       <div class="row">
         <button id="submitBtn">Classify</button>
@@ -342,9 +344,10 @@
 
       <div id="result">
         <div class="result-top">
-          <span class="hint" style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.72rem;">Predicted queue</span>
+          <span class="hint" style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.72rem;">Prediction</span>
           <span class="badge" id="badge"></span>
         </div>
+        <p class="review-note" id="reviewNote" style="display: none;"></p>
         <div class="confidence-label">
           <span>Confidence</span>
           <span id="confidenceValue">—</span>
@@ -352,21 +355,23 @@
         <div class="confidence-track">
           <div class="confidence-fill" id="confidenceFill"></div>
         </div>
+        <p class="topk-label">Top candidates</p>
+        <div id="topk"></div>
       </div>
     </div>
   </main>
 
   <script>
-    const CATEGORIES = ["billing", "account_access", "technical_issue", "feature_request"];
-
     const btn = document.getElementById("submitBtn");
     const textEl = document.getElementById("ticketText");
     const resultEl = document.getElementById("result");
     const errorEl = document.getElementById("error");
     const hintEl = document.getElementById("hint");
     const badgeEl = document.getElementById("badge");
+    const reviewNoteEl = document.getElementById("reviewNote");
     const confidenceValueEl = document.getElementById("confidenceValue");
     const confidenceFillEl = document.getElementById("confidenceFill");
+    const topkEl = document.getElementById("topk");
     const chipsEl = document.getElementById("chips");
 
     function resetPanels() {
@@ -405,17 +410,39 @@
           throw new Error(data.detail || "Classification failed.");
         }
 
-        CATEGORIES.forEach((c) => {
-          badgeEl.classList.remove("badge-" + c);
-          confidenceFillEl.classList.remove("fill-" + c);
-        });
-        badgeEl.classList.add("badge-" + data.category);
-        confidenceFillEl.classList.add("fill-" + data.category);
-        badgeEl.textContent = labelFor(data.category);
+        const state = data.needs_review ? "review" : "ok";
+
+        badgeEl.classList.remove("badge-ok", "badge-review");
+        confidenceFillEl.classList.remove("fill-ok", "fill-review");
+        badgeEl.classList.add("badge-" + state);
+        confidenceFillEl.classList.add("fill-" + state);
+        badgeEl.textContent = data.needs_review ? "Needs review" : labelFor(data.category);
+
+        if (data.needs_review) {
+          reviewNoteEl.textContent = "The model wasn't confident enough to auto-classify this ticket. Route it to a person — here's what it considered:";
+          reviewNoteEl.style.display = "block";
+        } else {
+          reviewNoteEl.style.display = "none";
+        }
 
         const pct = Math.round(data.confidence * 100);
         confidenceValueEl.textContent = pct + "%";
         confidenceFillEl.style.width = pct + "%";
+
+        topkEl.innerHTML = "";
+        (data.top_k || []).forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "topk-row";
+          const cat = document.createElement("span");
+          cat.className = "topk-category";
+          cat.textContent = labelFor(item.category);
+          const prob = document.createElement("span");
+          prob.className = "topk-prob";
+          prob.textContent = Math.round(item.probability * 100) + "%";
+          row.appendChild(cat);
+          row.appendChild(prob);
+          topkEl.appendChild(row);
+        });
 
         resultEl.classList.add("show");
       } catch (err) {
